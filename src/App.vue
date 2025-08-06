@@ -1,30 +1,81 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import Left from './components/Left.vue'
+import Middle from './components/Middle.vue'
+import Right from './components/Right.vue'
+import Header from './components/Header.vue'
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="app-container">
+    <Header />
+    <div class="content">
+      <div class="left-panel">
+        <Left />
+      </div>
+      <div class="middle-panel">
+        <Middle />
+      </div>
+      <div class="right-panel">
+        <Right />
+      </div>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  margin: 0;
+  padding: 0;
+}
+</style>
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  flex-direction: column;
+  background-color: #f0f0f0;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.content {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  gap: 16px;
+  padding: 16px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.left-panel {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.middle-panel {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.right-panel {
+  flex: 1;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 </style>
