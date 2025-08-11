@@ -3,6 +3,24 @@ import Left from './components/Left.vue'
 import Middle from './components/Middle.vue'
 import Right from './components/Right.vue'
 import Header from './components/Header.vue'
+import { reactive,provide } from 'vue'
+
+const globalState = reactive({
+  leftInputs: {
+    difficulty: 0,
+    ban:0,
+    ending:0
+  },
+  middleInputs: {
+
+  },
+  rightInputs: {
+
+  },
+  result: 0
+})
+
+provide('globalState', globalState)
 </script>
 
 <template>
@@ -53,7 +71,7 @@ body {
 }
 
 .left-panel {
-  flex: 1;
+  flex: 1.5;
   background-color: #f9f9f9;
   border-radius: 12px;
   padding: 20px;
