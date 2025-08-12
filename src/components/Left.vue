@@ -159,8 +159,8 @@ const endingOptions = computed(() => [
   }
 ])
 
-const handleEndingChange = (subOption: { id: keyof typeof endingCheckedStates.value, checked: boolean }) => {
-  endingCheckedStates.value[subOption.id] = subOption.checked
+const handleEndingChange = (subOption: any) => {
+  endingCheckedStates.value[subOption.id as keyof typeof endingCheckedStates.value] = subOption.checked
   const totalEnding = endingOptions.value
     .flatMap(ending => ending.subOptions)
     .filter(opt => opt.checked)
@@ -413,23 +413,29 @@ watch(difficulty, () => {
 .sub-options {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* 减小间距 */
+  gap: 0px;
   width: 100%;
 }
 
 .sub-option-item {
-  padding: 2px 4px; /* 减小内边距 */
+  padding: 0px 2px;
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
 
 .sub-option-item :deep(.el-checkbox) {
-  font-size: 11px; /* 减小字体 */
+  font-size: 12px;
 }
 
 .sub-option-item :deep(.el-checkbox__label) {
-  font-size: 11px; /* 减小字体 */
-  line-height: 1.2;
+  font-size: 12px; 
+  color: #333;
+  font-weight: 500;
+  line-height: 0.8;
+}
+
+.sub-option-item :deep(.el-checkbox__input) {
+  transform: scale(1.1); 
 }
 
 .selected-options {
