@@ -12,7 +12,9 @@ const globalState = reactive({
     ending:0
   },
   middleInputs: {
-
+    emergency: 0,
+    special: 0,
+    hole: 0
   },
   rightInputs: {
 
@@ -25,7 +27,6 @@ provide('globalState', globalState)
 
 <template>
   <div class="app-container">
-    <Header />
     <div class="content">
       <div class="left-panel">
         <Left />
@@ -59,7 +60,7 @@ body {
   height: 100vh;
   overflow: hidden;
   flex-direction: column;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 
 .content {
@@ -76,16 +77,16 @@ body {
   border-radius: 12px;
   padding: 20px;
   overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 .middle-panel {
   flex: 1;
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   border-radius: 12px;
   padding: 20px;
   overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
 .right-panel {
@@ -94,6 +95,6 @@ body {
   border-radius: 12px;
   padding: 20px;
   overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 </style>
