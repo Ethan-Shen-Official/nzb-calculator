@@ -82,7 +82,7 @@ body {
 }
 
 .middle-panel {
-  flex: 1;
+  flex: 1.2;
   background-color: #f9f9f9;
   border-radius: 12px;
   padding: 20px;

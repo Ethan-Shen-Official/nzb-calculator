@@ -22,7 +22,7 @@ watch([() => globalState.leftInputs, () => globalState.middleInputs, () => globa
 const updateInput = (key: string, value: number) => {
   console.log(`更新输入: ${key} = ${value}`) // 添加日志
   globalState.leftInputs[key] = value
-  console.log('当前 leftInputs:', globalState.leftInputs) // 查看更新后的状态
+  console.log('leftInputs:', globalState.leftInputs) // 查看更新后的状态
 }
 
 const difficulty = ref(0);
