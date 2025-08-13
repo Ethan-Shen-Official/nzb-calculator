@@ -2,7 +2,6 @@
 import Left from './components/Left.vue'
 import Middle from './components/Middle.vue'
 import Right from './components/Right.vue'
-import Header from './components/Header.vue'
 import { reactive,provide } from 'vue'
 
 const globalState = reactive({
@@ -18,7 +17,9 @@ const globalState = reactive({
     hole: 0
   },
   rightInputs: {
-
+    hidden: 0,
+    settle: 0,
+    deducted: 0
   },
   result: 0
 })
@@ -82,7 +83,7 @@ body {
 }
 
 .middle-panel {
-  flex: 1.2;
+  flex: 1;
   background-color: #f9f9f9;
   border-radius: 12px;
   padding: 20px;

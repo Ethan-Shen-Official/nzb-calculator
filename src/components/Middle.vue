@@ -10,7 +10,6 @@ const globalState = inject('globalState') as any
 
 watch([() => globalState.leftInputs, () => globalState.middleInputs, () => globalState.rightInputs], () => {
   globalState.result = calculate(globalState.leftInputs, globalState.middleInputs, globalState.rightInputs)
-  console.log('Middle Inputs:', globalState.middleInputs);
 }, { deep: true })
 
 const bossOptions = [

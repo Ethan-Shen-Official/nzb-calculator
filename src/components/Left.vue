@@ -160,7 +160,6 @@ const endingOptions = computed(() => [
 ])
 
 const handleEndingChange = (subOption: any) => {
-  // 处理互斥逻辑
   if (subOption.id === 'ending2_clear' && subOption.checked) {
     // 如果选择了昔字如烟通关，取消无漏选择
     endingCheckedStates.value['ending2_perfect'] = false
@@ -316,15 +315,22 @@ watch(difficulty, () => {
   box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; 
 }
 
-.top-panel h3 {
-  margin: 0;
+.panel-content h3 {
+  margin: 0 0 20px 0; 
   color: #333;
-  font-size: 16px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.ban-options, .ending-options {
+  margin-top: 0; 
+}
+
+.top-panel .panel-content {
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .top-panel :deep(.el-select) {
@@ -356,16 +362,14 @@ watch(difficulty, () => {
 }
 
 .ban-options {
-  display: flex;
+  margin-top: 20px;
+  display: grid; /* 改为grid布局 */
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* 四列等宽 */
   gap: 8px;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
 .option-item {
-  margin-top: 40px;
-  flex: 1;
-  min-width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -374,12 +378,6 @@ watch(difficulty, () => {
   border-radius: 8px;
   transition: all 0.2s ease;
   background: #f8f9fa;
-}
-
-.option-item:hover {
-  border-color: #007bff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
 }
 
 .image-container {
@@ -433,14 +431,17 @@ watch(difficulty, () => {
 }
 
 .ending-options {
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   gap: 6px;
   justify-content: space-between;
+  width: 100%;
 }
 
 .ending-item {
   flex: 1;
+  max-width: calc(33.333% - 4px); 
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -522,7 +523,7 @@ watch(difficulty, () => {
 }
 
 .selected-options {
-  margin-top: 16px;
+  margin-top: 12px;
   padding: 12px;
   background: #f1f3f5;
   border-radius: 6px;
@@ -547,7 +548,8 @@ watch(difficulty, () => {
 
 h2,h3 {
   color: #333;
-  font-size: 16px;
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 h4 {
