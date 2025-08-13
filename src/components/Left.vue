@@ -160,13 +160,31 @@ const endingOptions = computed(() => [
 ])
 
 const handleEndingChange = (subOption: any) => {
+  // 处理互斥逻辑
+  if (subOption.id === 'ending2_clear' && subOption.checked) {
+    // 如果选择了昔字如烟通关，取消无漏选择
+    endingCheckedStates.value['ending2_perfect'] = false
+  } else if (subOption.id === 'ending2_perfect' && subOption.checked) {
+    // 如果选择了昔字如烟无漏，取消通关选择
+    endingCheckedStates.value['ending2_clear'] = false
+  } else if (subOption.id === 'ending3_clear' && subOption.checked) {
+    // 如果选择了谋岁者通关，取消无漏选择
+    endingCheckedStates.value['ending3_perfect'] = false
+  } else if (subOption.id === 'ending3_perfect' && subOption.checked) {
+    // 如果选择了谋岁者无漏，取消通关选择
+    endingCheckedStates.value['ending3_clear'] = false
+  }
+  
+  // 更新当前选项状态
   endingCheckedStates.value[subOption.id as keyof typeof endingCheckedStates.value] = subOption.checked
+  
+  // 重新计算总分
   const totalEnding = endingOptions.value
     .flatMap(ending => ending.subOptions)
     .filter(opt => opt.checked)
     .reduce((sum, opt) => sum + opt.value, 0)
   
-  console.log('计算的 totalEnding:', totalEnding) // 添加日志
+  console.log('计算的 totalEnding:', totalEnding)
   updateInput('ending', totalEnding)
 }
 
