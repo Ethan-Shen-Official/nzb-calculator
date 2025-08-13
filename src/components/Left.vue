@@ -186,7 +186,7 @@ watch(difficulty, () => {
     <!-- 上面板 -->
     <div class="top-panel" :style="{ height: topPanelHeight + '%' }">
       <div class="panel-content">
-        <h3>挑战难度</h3>
+        <h4>挑战难度</h4>
           <el-select v-model="difficulty" 
           placeholder="挑战难度" 
           @change="updateInput('difficulty',$event) " 

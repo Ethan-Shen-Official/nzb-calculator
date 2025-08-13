@@ -12,6 +12,7 @@ const globalState = reactive({
     ending:0
   },
   middleInputs: {
+    boss: 0,
     emergency: 0,
     special: 0,
     hole: 0
