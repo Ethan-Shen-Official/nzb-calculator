@@ -186,11 +186,12 @@ watch(difficulty, () => {
     <!-- 上面板 -->
     <div class="top-panel" :style="{ height: topPanelHeight + '%' }">
       <div class="panel-content">
-        <h4>挑战难度</h4>
+        <h3>挑战难度</h3>
           <el-select v-model="difficulty" 
           placeholder="挑战难度" 
           @change="updateInput('difficulty',$event) " 
-          style="width: 40%;">
+          style="width: 40%;"
+          >
             <el-option label="12" :value="0"></el-option>
             <el-option label="13" :value="50"></el-option>
             <el-option label="14" :value="150"></el-option>
@@ -248,7 +249,7 @@ watch(difficulty, () => {
                   class="ending-image"
                 />
               </div>
-              <h4>{{ ending.name }}</h4>
+              <h3>{{ ending.name }}</h3>
             </div>
             
             <!-- 选项列表 -->
@@ -295,6 +296,45 @@ watch(difficulty, () => {
   border: 1px solid #e1e5e9;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
+}
+
+.top-panel h3 {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.top-panel :deep(.el-select) {
+  width: 40% !important; 
+}
+
+.top-panel :deep(.el-select .el-input__inner) {
+  height: 50px !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 50px !important;
+}
+
+.top-panel :deep(.el-select .el-input__suffix) {
+  height: 50px !important;
+  line-height: 50px !important;
+}
+
+.top-panel :deep(.el-select .el-input__suffix-inner) {
+  line-height: 50px !important;
+}
+
+/* 下拉选项样式 */
+.top-panel :deep(.el-select-dropdown .el-select-dropdown__item) {
+  height: 45px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 45px !important;
 }
 
 .ban-options {
@@ -305,6 +345,7 @@ watch(difficulty, () => {
 }
 
 .option-item {
+  margin-top: 40px;
   flex: 1;
   min-width: 100px;
   display: flex;
@@ -347,15 +388,37 @@ watch(difficulty, () => {
   text-align: center;
 }
 
+.checkbox-container :deep(.el-checkbox__label) {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #333;
+}
+
+.sub-option-item :deep(.el-checkbox__label) {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #333;
+  line-height: 1.2;
+}
+
+.checkbox-container :deep(.el-checkbox__input) {
+  transform: scale(1.2);
+}
+
+.sub-option-item :deep(.el-checkbox__input) {
+  transform: scale(1.2);
+}
+
 .option-item:has(.el-checkbox.is-checked) {
   border-color: #28a745;
   background: #f8fff9;
 }
 
 .ending-options {
+  margin-top: 40px;
   display: flex;
-  gap: 6px; /* 减小间距 */
-  justify-content: space-between; /* 充分利用空间 */
+  gap: 6px;
+  justify-content: space-between;
 }
 
 .ending-item {
@@ -363,11 +426,12 @@ watch(difficulty, () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px;
+  padding: 12px;
   border: 2px solid #e1e5e9;
   border-radius: 8px;
   background: #f8f9fa;
   transition: all 0.2s ease;
+  min-height: 200px;
 }
 
 .ending-item:hover {
@@ -380,16 +444,16 @@ watch(difficulty, () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 8px; /* 减小间距 */
+  margin-bottom: 12px;
 }
 
 .ending-image-container {
   width: 80px;
-  height: 73px;
+  height: 80px;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #ffffff;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .ending-image {
@@ -425,11 +489,11 @@ watch(difficulty, () => {
 }
 
 .sub-option-item :deep(.el-checkbox) {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .sub-option-item :deep(.el-checkbox__label) {
-  font-size: 12px; 
+  font-size: 14px; 
   color: #333;
   font-weight: 500;
   line-height: 0.8;
@@ -463,9 +527,8 @@ watch(difficulty, () => {
   margin-bottom: 4px;
 }
 
-h3 {
+h2,h3 {
   color: #333;
-  margin: 0 0 12px 0;
   font-size: 16px;
 }
 

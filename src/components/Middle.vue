@@ -2,8 +2,8 @@
 import { watch, inject, ref } from 'vue';
 import { calculate } from '../cal/cal';
 
-const topPanelHeight = 30;
-const middlePanelHeight = 40;
+const topPanelHeight = 20;
+const middlePanelHeight = 55;
 const bottomPanelHeight = 100 - topPanelHeight - middlePanelHeight;
 
 const globalState = inject('globalState') as any
@@ -56,7 +56,7 @@ const emergencyOptions = [
   { id: 12, label: "人镇", clearValue: 80, perfectValue: 100 }
 ];
 
-// 特殊作战选项（修改分明和作壁上观）
+// 特殊作战选项
 const specialOptions = [
   { id: 101, label: "劫罚", clearValue: 0, perfectValue: 30 },
   { id: 102, label: "[紧急]劫罚", clearValue: 0, perfectValue: 40 },
@@ -71,7 +71,7 @@ const specialOptions = [
 ];
 
 // 岁兽残识选项
-const beastOptions = [
+const holeOptions = [
   { id: 201, label: "地有四难(鸭狗熊)", clearValue: 0, perfectValue: 30 },
   { id: 202, label: "地有四难(刺箱)", clearValue: 0, perfectValue: 20 },
   { id: 203, label: "迷惘", clearValue: 0, perfectValue: 30 }
@@ -80,7 +80,7 @@ const beastOptions = [
 // 每个关卡的选择状态: 0=未选择, 1=通关, 2=无漏
 const emergencySelections = ref<{ [key: number]: number }>({});
 const specialSelections = ref<{ [key: number]: number }>({});
-const beastSelections = ref<{ [key: number]: number }>({});
+const holeSelections = ref<{ [key: number]: number }>({});
 
 const handleEmergencyChange = (stageId: number, optionType: number) => {
   if (emergencySelections.value[stageId] === optionType) {
@@ -100,11 +100,11 @@ const handleSpecialChange = (stageId: number, optionType: number) => {
   calculateTotal();
 }
 
-const handleBeastChange = (stageId: number, optionType: number) => {
-  if (beastSelections.value[stageId] === optionType) {
-    delete beastSelections.value[stageId];
+const handleHoleChange = (stageId: number, optionType: number) => {
+  if (holeSelections.value[stageId] === optionType) {
+    delete holeSelections.value[stageId];
   } else {
-    beastSelections.value[stageId] = optionType;
+    holeSelections.value[stageId] = optionType;
   }
   calculateTotal();
 }
@@ -141,9 +141,9 @@ const calculateTotal = () => {
   });
   
   // 计算岁兽残识总分
-  Object.keys(beastSelections.value).forEach(stageId => {
-    const selectedType = beastSelections.value[parseInt(stageId)];
-    const stage = beastOptions.find(s => s.id === parseInt(stageId));
+  Object.keys(holeSelections.value).forEach(stageId => {
+    const selectedType = holeSelections.value[parseInt(stageId)];
+    const stage = holeOptions.find(s => s.id === parseInt(stageId));
     if (stage && selectedType) {
       if (selectedType === 1) {
         holeTotal += stage.clearValue;
@@ -253,7 +253,7 @@ const calculateTotal = () => {
         <!-- 岁兽残识选项 -->
         <div class="combat-list">
           <div 
-            v-for="stage in beastOptions" 
+            v-for="stage in holeOptions" 
             :key="stage.id" 
             class="combat-stage"
           >
@@ -261,14 +261,14 @@ const calculateTotal = () => {
             <div class="stage-options">
               <el-checkbox
                 v-if="stage.clearValue > 0"
-                :model-value="beastSelections[stage.id] === 1"
-                @change="handleBeastChange(stage.id, 1)"
+                :model-value="holeSelections[stage.id] === 1"
+                @change="handleHoleChange(stage.id, 1)"
                 label="通关"
               />
               <el-checkbox
                 v-if="stage.perfectValue > 0"
-                :model-value="beastSelections[stage.id] === 2"
-                @change="handleBeastChange(stage.id, 2)"
+                :model-value="holeSelections[stage.id] === 2"
+                @change="handleHoleChange(stage.id, 2)"
                 label="无漏"
               />
             </div>
@@ -355,7 +355,6 @@ h2, h3 {
   background-color: #e7f0ff;
 }
 
-/* 作战选项样式 */
 .combat-list {
   display: flex;
   flex-direction: column;
@@ -370,9 +369,9 @@ h2, h3 {
 
 .stage-name {
   padding: 2px;
-  font-size: 13px;
+  font-size: 15px;
   color: #333;
-  font-weight: 500;
+  font-weight: 550;
   width: 140px;
   flex-shrink: 0; 
   text-align: left;
@@ -385,11 +384,11 @@ h2, h3 {
 }
 
 .stage-options :deep(.el-checkbox) {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .stage-options :deep(.el-checkbox__label) {
-  font-size: 13px;
+  font-size: 16px;
   color: #333;
   font-weight: 500;
   line-height: 0.8;
