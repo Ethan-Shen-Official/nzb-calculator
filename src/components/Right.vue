@@ -389,4 +389,14 @@ h2, h3 {
 .settle-input-field :deep(.el-input__inner):focus {
   box-shadow: none;
 }
+
+.settle-input-field :deep(.el-input__inner)::-webkit-outer-spin-button,
+.settle-input-field :deep(.el-input__inner)::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.settle-input-field :deep(.el-input__inner) {
+  -moz-appearance: textfield; /* Firefox */
+}
 </style>
